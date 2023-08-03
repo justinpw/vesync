@@ -1,0 +1,19 @@
+name: Check Freezer Plug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    env:
+      VESYNC_EMAIL: ${{ secrets.VESYNC_EMAIL }}
+      VESYNC_PASSWORD: ${{ secrets.VESYNC_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -r requirements.txt
+      - run: python3 app.py
