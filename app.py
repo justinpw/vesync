@@ -14,12 +14,11 @@ def run():
   sender = os.environ.get('GMAIL_ADDRESS')
   gmail_app_password = os.environ.get('GMAIL_APP_PASSWORD')
   recipients = tuple(_.strip() for _ in os.environ.get('GARAGE_RECIPIENTS').split(','))
-  device_name = 'Garage'
   
-  manager = VeSync(email, password)
+  manager = VeSync(vesync_email, vesync_password)
   manager.login()
   manager.update()
-  outlet = next(_ for _ in manager.outlets if _.device_name == device_name)
+  outlet = next(_ for _ in manager.outlets if _.device_name == DEVICE_NAME)
 
   stringio = io.StringIO()
   
@@ -28,7 +27,7 @@ def run():
   
   details = stringio.getvalue()
   message = MIMEText(details)
-  message['Subject'] = f'{device_name} status'
+  message['Subject'] = f'{DEVICE_NAME} status'
   message['From'] = sender
   message['To'] = ', '.split(recipients)
 
