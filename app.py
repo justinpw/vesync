@@ -33,7 +33,7 @@ def run():
 
   with SMTP_SSL(SMTP_SERVER, SMTP_PORT) as smtp:
     smtp.login(sender, gmail_app_password)
-    smtp.sendmail(sender, recipients, message.to_string())
+    smtp.sendmail(sender, recipients, message.as_string())
     
 if __name__ == "__main__":
   run()
