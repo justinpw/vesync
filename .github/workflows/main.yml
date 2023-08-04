@@ -2,6 +2,8 @@ name: Check Freezer Plug
 
 on:
   workflow_dispatch:
+  schedule:
+  - cron: "0 16 * * *"  # daily 12pm EST (4pm UTC)
 
 jobs:
   job:
