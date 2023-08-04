@@ -29,7 +29,7 @@ def run():
   message = MIMEText(details)
   message['Subject'] = f'{DEVICE_NAME} status'
   message['From'] = sender
-  message['To'] = ', '.split(recipients)
+  message['To'] = ', '.join(recipients)
 
   with SMTP_SSL(SMTP_SERVER, SMTP_PORT) as smtp:
     smtp.login(sender, gmail_app_password)
