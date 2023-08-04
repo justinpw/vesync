@@ -9,6 +9,9 @@ jobs:
     env:
       VESYNC_EMAIL: ${{ secrets.VESYNC_EMAIL }}
       VESYNC_PASSWORD: ${{ secrets.VESYNC_PASSWORD }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+      GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+      GARAGE_RECIPIENTS: ${{ vars.GARAGE_RECIPIENTS }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
