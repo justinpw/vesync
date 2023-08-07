@@ -1,9 +1,9 @@
-name: Check Freezer Plug
+name: Garage Plug Alarm
 
 on:
   workflow_dispatch:
   schedule:
-  - cron: "0 16 * * *"  # daily 12pm EST (4pm UTC)
+  - cron: "0 * * * *"  # hourly
 
 jobs:
   job:
@@ -21,4 +21,4 @@ jobs:
           python-version: '3.9'
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
-      - run: python3 app.py
+      - run: python3 app.py alarm
