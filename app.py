@@ -28,10 +28,13 @@ def get_outlet_details():
   return details
 
 def send_email(subject, text):
+  subject = f'{DEVICE_NAME} {subject}'
   message = MIMEText(details)
-  message['Subject'] = f'{DEVICE_NAME} {subject}'
+  message['Subject'] = subject
   message['From'] = SENDER
   message['To'] = ', '.join(RECIPIENTS)
+
+  print(f'emailing {subject}')
 
   with SMTP_SSL(SMTP_SERVER, SMTP_PORT) as smtp:
     smtp.login(SENDER, GMAIL_APP_PASSWORD)
@@ -40,13 +43,15 @@ def send_email(subject, text):
 def run():
   arg = sys.argv[-1]
   details = get_outlet_details()
-  print(details)
 
   if arg == 'report':
-    send_email(f'{DEVICE_NAME} status', details)
+    send_email('status', details)
 
   elif arg == 'alarm' and 'off' in details:
-    send_email('Garage alarm', details)
+    send_email('alarm', details)
+
+  else:
+    print('NOOP')
 
 if __name__ == "__main__":
   run()
