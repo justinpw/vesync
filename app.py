@@ -29,7 +29,7 @@ def get_outlet_details():
 
 def send_email(subject, text):
   subject = f'{DEVICE_NAME} {subject}'
-  message = MIMEText(details)
+  message = MIMEText(text)
   message['Subject'] = subject
   message['From'] = SENDER
   message['To'] = ', '.join(RECIPIENTS)
