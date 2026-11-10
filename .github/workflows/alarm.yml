@@ -15,10 +15,10 @@ jobs:
       GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
       GARAGE_RECIPIENTS: ${{ vars.GARAGE_RECIPIENTS }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
       - run: python3 app.py alarm
